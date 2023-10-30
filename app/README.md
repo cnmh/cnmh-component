@@ -1,10 +1,13 @@
 # App - CNMH
 
+<!-- TODO Présentation de CNMH -->
+
 ## Installation
+
+<!-- TODO : Introduction -->
 
 ````bash
 npm install
-npm run dev
 composer install
 php artisan migrate:fresh
 php artisan db:seed
@@ -29,3 +32,8 @@ extension=gd
 
 
 ## Travail à faire
+
+
+## Extension VS Code  
+
+- [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)
