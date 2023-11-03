@@ -12,9 +12,16 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Flash;
 
+/**
+ * Class TypeHandicapController
+ *
+ * This class is responsible for handling TypeHandicap-related operations in your web application.
+ *
+ * @package App\Http\Controllers
+ */
 class TypeHandicapController extends AppBaseController
 {
-    /** @var TypeHandicapRepository $typeHandicapRepository*/
+    /** @var TypeHandicapRepository $typeHandicapRepository */
     private $typeHandicapRepository;
 
     public function __construct(TypeHandicapRepository $typeHandicapRepo)
@@ -24,7 +31,12 @@ class TypeHandicapController extends AppBaseController
 
     /**
      * Display a listing of the TypeHandicap.
-     */
+     *
+     * @param Request $request
+     * @return View
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function index(Request $request)
     {
         $query = $request->input('query');
@@ -39,7 +51,11 @@ class TypeHandicapController extends AppBaseController
 
     /**
      * Show the form for creating a new TypeHandicap.
-     */
+     *
+     * @return View
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function create()
     {
         return view('type_handicaps.create');
@@ -47,7 +63,12 @@ class TypeHandicapController extends AppBaseController
 
     /**
      * Store a newly created TypeHandicap in storage.
-     */
+     *
+     * @param CreateTypeHandicapRequest $request
+     * @return RedirectResponse
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function store(CreateTypeHandicapRequest $request)
     {
         $input = $request->all();
@@ -60,24 +81,13 @@ class TypeHandicapController extends AppBaseController
     }
 
     /**
-     * Display the specified TypeHandicap.
-     */
-    public function show($id)
-    {
-        $typeHandicap = $this->typeHandicapRepository->find($id);
-
-        if (empty($typeHandicap)) {
-            Flash::error(__('models/typeHandicaps.singular').' '.__('messages.not_found'));
-
-            return redirect(route('typeHandicaps.index'));
-        }
-
-        return view('type_handicaps.show')->with('typeHandicap', $typeHandicap);
-    }
-
-    /**
      * Show the form for editing the specified TypeHandicap.
-     */
+     *
+     * @param $id
+     * @return View
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function edit($id)
     {
         $typeHandicap = $this->typeHandicapRepository->find($id);
@@ -93,7 +103,13 @@ class TypeHandicapController extends AppBaseController
 
     /**
      * Update the specified TypeHandicap in storage.
-     */
+     *
+     * @param $id
+     * @param UpdateTypeHandicapRequest $request
+     * @return RedirectResponse
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function update($id, UpdateTypeHandicapRequest $request)
     {
         $typeHandicap = $this->typeHandicapRepository->find($id);
@@ -114,8 +130,12 @@ class TypeHandicapController extends AppBaseController
     /**
      * Remove the specified TypeHandicap from storage.
      *
+     * @param $id
+     * @return RedirectResponse
      * @throws \Exception
-     */
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function destroy($id)
     {
         $typeHandicap = $this->typeHandicapRepository->find($id);
@@ -132,10 +152,47 @@ class TypeHandicapController extends AppBaseController
 
         return redirect(route('typeHandicaps.index'));
     }
-    public function export(){
+
+
+    /**
+     * Show the specified TypeHandicap from storage.
+     * @param Request $request
+     * @return View
+     * @author CodeCampers/boukhar Soufiane
+    */
+    
+    public function show($id){
+        $typeHandicap = $this->typeHandicapRepository->find($id);
+
+        if(empty($typeHandicap)){
+            Flash::error(__('models/typeHandicaps.singular').' '.__('messages.not_found'));
+            return redirect(route('typeHandicaps.index'));
+        }
+        return view('type_handicaps.show')->with('typeHandicap',$typeHandicap);
+    }
+
+    /**
+     * Export the TypeHandicap data to an Excel file.
+     *
+     * @return BinaryFileResponse
+     * @author CodeCampers/boukhar Soufiane
+    */
+
+    public function export()
+    {
         return Excel::download(new ExportTypehandicap, 'type handicap.xlsx');
     }
-    public function import(Request $request){
+
+    /**
+     * Import TypeHandicap data from an Excel file.
+     *
+     * @param Request $request
+     * @return RedirectResponse
+     * @author CodeCampers/boukhar Soufiane
+    */
+
+    public function import(Request $request)
+    {
         Excel::import(new importTypehandicap, $request->file('file')->store('files'));
         return redirect()->back();
     }
