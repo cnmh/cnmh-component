@@ -39,7 +39,10 @@ Route::resource('projects',App\Http\Controllers\ProjectController::class);
 // Route::resource('members',App\Http\Controllers\MemberController::class);
 // couvertureMedicals
 
-Route::prefix('admin')->middleware('can:admin')->group(function () {
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::group(['middleware'=>'admin'], function(){
     Route::resource('couvertureMedicals', App\Http\Controllers\CouvertureMedicalController::class);
     Route::get('/export_couvertureMedicals', [CouvertureMedicalController::class, 'export'])->name('couvertureMedicals.export');
     Route::post('/import_couvertureMedicals', [CouvertureMedicalController::class, 'import'])->name('couvertureMedicals.import');
@@ -47,7 +50,7 @@ Route::prefix('admin')->middleware('can:admin')->group(function () {
     Route::resource('services', App\Http\Controllers\ServiceController::class);
     Route::get('/export_service', [ServiceController::class, 'export'])->name('services.export');
     Route::post('/import_service', [ServiceController::class, 'import'])->name('services.import');
-}); 
+});
 
 
 //employes routes
