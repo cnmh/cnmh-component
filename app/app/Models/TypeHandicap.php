@@ -4,6 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
  use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+/**
+ * @author CodeCampers,Soufiane boukhar
+ */
+
+
 class TypeHandicap extends Model
 {
     use HasFactory;    public $table = 'type_handicaps';

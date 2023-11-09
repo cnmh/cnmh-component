@@ -14,10 +14,13 @@ use Flash;
 
 /**
  * Class TypeHandicapController
+ *
  * This class is responsible for handling TypeHandicap-related operations in your web application.
  * @package App\Http\Controllers
-*/
+ * @author CodeCampers,boukhar Soufiane
+ */
 
+ 
 class TypeHandicapController extends AppBaseController
 {
     /** @var TypeHandicapRepository $typeHandicapRepository */
@@ -30,9 +33,9 @@ class TypeHandicapController extends AppBaseController
 
     /**
      * Display a listing of the TypeHandicap.
+     *
      * @param Request $request
      * @return View
-     * @author CodeCampers/boukhar Soufiane
     */
 
     public function index(Request $request)
@@ -49,8 +52,8 @@ class TypeHandicapController extends AppBaseController
 
     /**
      * Show the form for creating a new TypeHandicap.
+     *
      * @return View
-     * @author CodeCampers/boukhar Soufiane
     */
 
     public function create()
@@ -60,9 +63,9 @@ class TypeHandicapController extends AppBaseController
 
     /**
      * Store a newly created TypeHandicap in storage.
+     *
      * @param CreateTypeHandicapRequest $request
      * @return RedirectResponse
-     * @author CodeCampers/boukhar Soufiane
     */
 
     public function store(CreateTypeHandicapRequest $request)
@@ -78,9 +81,9 @@ class TypeHandicapController extends AppBaseController
 
     /**
      * Show the form for editing the specified TypeHandicap.
+     *
      * @param $id
      * @return View
-     * @author CodeCampers/boukhar Soufiane
     */
 
     public function edit($id)
@@ -98,10 +101,10 @@ class TypeHandicapController extends AppBaseController
 
     /**
      * Update the specified TypeHandicap in storage.
+     *
      * @param $id
      * @param UpdateTypeHandicapRequest $request
      * @return RedirectResponse
-     * @author CodeCampers/boukhar Soufiane
     */
 
     public function update($id, UpdateTypeHandicapRequest $request)
@@ -123,10 +126,10 @@ class TypeHandicapController extends AppBaseController
 
     /**
      * Remove the specified TypeHandicap from storage.
+     *
      * @param $id
      * @return RedirectResponse
      * @throws \Exception
-     * @author CodeCampers/boukhar Soufiane
     */
 
     public function destroy($id)
@@ -151,9 +154,8 @@ class TypeHandicapController extends AppBaseController
      * Show the specified TypeHandicap from storage.
      * @param Request $request
      * @return View
-     * @author CodeCampers/boukhar Soufiane
     */
-
+    
     public function show($id){
         $typeHandicap = $this->typeHandicapRepository->find($id);
 
@@ -166,8 +168,8 @@ class TypeHandicapController extends AppBaseController
 
     /**
      * Export the TypeHandicap data to an Excel file.
+     *
      * @return BinaryFileResponse
-     * @author CodeCampers/boukhar Soufiane
     */
 
     public function export()
@@ -177,9 +179,9 @@ class TypeHandicapController extends AppBaseController
 
     /**
      * Import TypeHandicap data from an Excel file.
+     *
      * @param Request $request
      * @return RedirectResponse
-     * @author CodeCampers/boukhar Soufiane
     */
 
     public function import(Request $request)

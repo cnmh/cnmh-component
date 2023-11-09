@@ -4,6 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
  use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+  /**
+ * A supprimer
+ */
+
 class Task extends Model
 {
     use HasFactory;    public $table = 'tasks';

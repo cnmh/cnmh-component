@@ -5,12 +5,17 @@ namespace Database\Seeders;
 use App\Models\TypeHandicap;
 use Illuminate\Database\Seeder;
 
+/**
+ * @author CodeCampers, Boukhar Soufiane
+*/
+
 class TypeHandicapsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      *
      * @return void
+     *
      */
     public function run()
     {

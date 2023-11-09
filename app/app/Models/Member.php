@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
  use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+ /**
+ * A supprimer
+ */
 class Member extends Model
 {
     use HasFactory;    public $table = 'members';

@@ -4,6 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
  use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+ /**
+ * Sprint 3
+ */
+
 class Fonction extends BaseModel
 {
     use HasFactory;    public $table = 'fonctions';
