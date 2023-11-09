@@ -30,7 +30,6 @@ use App\Http\Controllers\RendezVousController;
 
 
 Auth::routes();
-
 Route::post('login',[LoginController::class,'login'])->name("login");
 Route::post('logout',[LoginController::class,'logout'])->name("logout");
 Route::group(['middleware' => ['Login']], function () {
@@ -39,13 +38,17 @@ Route::resource('projects',App\Http\Controllers\ProjectController::class);
 // Route::resource('tasks',App\Http\Controllers\TaskController::class);
 // Route::resource('members',App\Http\Controllers\MemberController::class);
 // couvertureMedicals
-Route::resource('couvertureMedicals', App\Http\Controllers\CouvertureMedicalController::class);
-Route::get('/export_couvertureMedicals',[CouvertureMedicalController::class,'export'])->name('couvertureMedicals.export');
-Route::post('/import_couvertureMedicals',[CouvertureMedicalController::class,'import'])->name('couvertureMedicals.import');
-Route::resource('typeHandicaps', App\Http\Controllers\TypeHandicapController::class);
-Route::resource('services', App\Http\Controllers\ServiceController::class);
-Route::get('/export_service',[ServiceController::class,'export'])->name('services.export');
-Route::post('/import_service',[ServiceController::class,'import'])->name('services.import');
+
+Route::prefix('admin')->middleware('can:admin')->group(function () {
+    Route::resource('couvertureMedicals', App\Http\Controllers\CouvertureMedicalController::class);
+    Route::get('/export_couvertureMedicals', [CouvertureMedicalController::class, 'export'])->name('couvertureMedicals.export');
+    Route::post('/import_couvertureMedicals', [CouvertureMedicalController::class, 'import'])->name('couvertureMedicals.import');
+    Route::resource('typeHandicaps', App\Http\Controllers\TypeHandicapController::class);
+    Route::resource('services', App\Http\Controllers\ServiceController::class);
+    Route::get('/export_service', [ServiceController::class, 'export'])->name('services.export');
+    Route::post('/import_service', [ServiceController::class, 'import'])->name('services.import');
+}); 
+
 
 //employes routes
 Route::resource('employes', App\Http\Controllers\EmployeController::class);
