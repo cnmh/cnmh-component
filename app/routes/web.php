@@ -32,14 +32,13 @@ use App\Http\Controllers\RendezVousController;
 Auth::routes();
 Route::post('login',[LoginController::class,'login'])->name("login");
 Route::post('logout',[LoginController::class,'logout'])->name("logout");
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['Login']], function () {
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('projects',App\Http\Controllers\ProjectController::class);
 // Route::resource('tasks',App\Http\Controllers\TaskController::class);
 // Route::resource('members',App\Http\Controllers\MemberController::class);
 // couvertureMedicals
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Route::group(['middleware'=>'admin'], function(){
@@ -50,13 +49,15 @@ Route::group(['middleware'=>'admin'], function(){
     Route::resource('services', App\Http\Controllers\ServiceController::class);
     Route::get('/export_service', [ServiceController::class, 'export'])->name('services.export');
     Route::post('/import_service', [ServiceController::class, 'import'])->name('services.import');
+    //employes routes
+    Route::resource('employes', App\Http\Controllers\EmployeController::class);
+    Route::get('/export_employes',[EmployeController::class,'export'])->name('employes.export');
+    Route::post('/import_employes',[EmployeController::class,'import'])->name('employes.import');
 });
 
 
-//employes routes
-Route::resource('employes', App\Http\Controllers\EmployeController::class);
-Route::get('/export_employes',[EmployeController::class,'export'])->name('employes.export');
-Route::post('/import_employes',[EmployeController::class,'import'])->name('employes.import');
+
+
 
 Route::resource('reclamations', App\Http\Controllers\ReclamationController::class);
 Route::resource('fonctions', App\Http\Controllers\FonctionController::class);
