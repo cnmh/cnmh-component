@@ -53,6 +53,22 @@ Route::group(['middleware'=>'admin'], function(){
     Route::resource('employes', App\Http\Controllers\EmployeController::class);
     Route::get('/export_employes',[EmployeController::class,'export'])->name('employes.export');
     Route::post('/import_employes',[EmployeController::class,'import'])->name('employes.import');
+
+
+
+    Route::get('/export_typehandicap',[TypeHandicapController::class,'export'])->name('typehandicap.export');
+    Route::post('/import_typehandicap',[TypeHandicapController::class,'import'])->name('typehandicap.import');
+
+
+    Route::resource('niveauScolaires', App\Http\Controllers\NiveauScolaireController::class);
+    Route::get('/export_niveauScolaires',[NiveauScolaireController::class,'export'])->name('niveauScolaires.export');
+    Route::post('/import_niveauScolaires',[NiveauScolaireController::class,'import'])->name('niveauScolaires.import');
+
+    Route::resource('etatCivils', EtatCivilController::class);
+    // EtatCivil export and import
+    Route::get('/export_etatCivils',[EtatCivilController::class,'export'])->name('etatCivils.export');
+    Route::post('/import_etatCivils',[EtatCivilController::class,'import'])->name('etatCivils.import');
+
 });
 
 
@@ -80,7 +96,6 @@ Route::get('/consultations/patient/{model}', [ConsultationController::class, 'pa
 
 
 
-Route::resource('etatCivils', EtatCivilController::class);
 // Route::resource('rendez-vouses', App\Http\Controllers\RendezVousController::class);
 Route::get('/rendez-vous',[RendezVousController::class,'index'])->name('rendez-vous.index');
 Route::get('/rendez-vous/list_dossier',[RendezVousController::class,'list_dossier'])->name('rendez-vous.list_dossier');
@@ -97,17 +112,7 @@ Route::prefix('/root')->group(function() {
     Route::resource('menu-items', App\Http\Controllers\Root\MenuItemController::class);
     Route::resource('menu-groups', App\Http\Controllers\Root\MenuGroupController::class);
 });
-Route::get('/export_typehandicap',[TypeHandicapController::class,'export'])->name('typehandicap.export');
-Route::post('/import_typehandicap',[TypeHandicapController::class,'import'])->name('typehandicap.import');
 
-
-Route::resource('niveauScolaires', App\Http\Controllers\NiveauScolaireController::class);
-Route::get('/export_niveauScolaires',[NiveauScolaireController::class,'export'])->name('niveauScolaires.export');
-Route::post('/import_niveauScolaires',[NiveauScolaireController::class,'import'])->name('niveauScolaires.import');
-
-// EtatCivil export and import
-Route::get('/export_etatCivils',[EtatCivilController::class,'export'])->name('etatCivils.export');
-Route::post('/import_etatCivils',[EtatCivilController::class,'import'])->name('etatCivils.import');
 Route::resource('tuteurs', App\Http\Controllers\TuteurController::class);
 
 Route::get('/parentForm',[DossierPatientController::class,'parent'])->name('dossier-patients.parent');
