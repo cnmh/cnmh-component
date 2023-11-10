@@ -11,7 +11,12 @@
             <div class="card">
                 <div class="card-body login-card-body">
                     <p class="login-box-msg">Connectez-vous pour démarrer votre session.
- </p>
+                    </p>
+                    @if(session('error'))
+                    <div class="bg-danger p-2 mt-3 mb-3">
+                        <span class="font-medium text-light">{{ session('error') }}</span>
+                    </div>
+                    @endif
 
                     <form method="post" action="{{ route('login') }}">
                         @csrf
@@ -23,7 +28,7 @@
                                 <div class="input-group-text"><span class="fas fa-envelope"></span></div>
                             </div>
                             @error('error')
-                                <span class="error invalid-feedback">{{ $message }}</span>
+                            <span class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
 
@@ -36,7 +41,7 @@
                                 </div>
                             </div>
                             @error('password')
-                                <span class="error invalid-feedback">{{ $message }}</span>
+                            <span class="error invalid-feedback">{{ $message }}</span>
                             @enderror
 
                         </div>
