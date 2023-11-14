@@ -142,6 +142,8 @@ class TypeHandicapController extends AppBaseController
             return redirect(route('typeHandicaps.index'));
         }
 
+        $this->authorize('delete',$typeHandicap);
+
         $this->typeHandicapRepository->delete($id);
 
         Flash::success(__('messages.deleted', ['model' => __('models/typeHandicaps.singular')]));
