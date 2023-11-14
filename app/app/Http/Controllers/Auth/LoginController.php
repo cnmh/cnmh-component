@@ -71,6 +71,8 @@ function logout(){
 }
 
 
+
+
 }
 // $user = User::where([
 //      ['name', $request->name],
