@@ -7,6 +7,7 @@
                 <div class="col-sm-6">
                     <h1>{{__('models/couvertureMedicals.plural')}}</h1>
                 </div>
+                @can('create',App\Models\CouvertureMedical::class)
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right" href="{{ route('couvertureMedicals.create') }}">
                         @lang('crud.create')
@@ -17,6 +18,7 @@
                     @endif
                     </a>
                 </div>
+                @endcan
             </div>
         </div>
     </section>
