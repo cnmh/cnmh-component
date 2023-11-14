@@ -2,7 +2,6 @@
 
 @section('content')
 
-
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -11,10 +10,12 @@
                       {{strtolower(__('models/services.plural'))}}</h1>
                 </div>
                 <div class="col-sm-6">
+                    @can('create',App\Models\Service::class)
                     <a class="btn btn-primary float-right"
                        href="{{ route('services.create') }}">
                          @lang('crud.add_new')  {{strtolower(__('models/services.singular'))}}
                     </a>
+                    @endcan
                 </div>
             </div>
         </div>

@@ -189,7 +189,7 @@ class ServiceController extends AppBaseController
     */
 
     public function import(Request $request){
-        
+
         $this->authorizeCnmh('create','Service');
 
         Excel::import(new ServiceImport, $request->file('file')->store('files'));
