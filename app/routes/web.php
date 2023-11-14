@@ -30,8 +30,7 @@ use App\Http\Controllers\RendezVousController;
 
 
 Auth::routes();
-Route::post('login',[LoginController::class,'login'])->name("login");
-Route::post('logout',[LoginController::class,'logout'])->name("logout");
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => ['Login']], function () {
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -41,7 +40,6 @@ Route::resource('projects',App\Http\Controllers\ProjectController::class);
 // couvertureMedicals
 
 
-Route::group(['middleware'=>'admin'], function(){
     Route::resource('couvertureMedicals', App\Http\Controllers\CouvertureMedicalController::class);
     Route::get('/export_couvertureMedicals', [CouvertureMedicalController::class, 'export'])->name('couvertureMedicals.export');
     Route::post('/import_couvertureMedicals', [CouvertureMedicalController::class, 'import'])->name('couvertureMedicals.import');
@@ -69,7 +67,6 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('/export_etatCivils',[EtatCivilController::class,'export'])->name('etatCivils.export');
     Route::post('/import_etatCivils',[EtatCivilController::class,'import'])->name('etatCivils.import');
 
-});
 
 
 

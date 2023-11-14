@@ -11,6 +11,8 @@ use App\Repositories\TypeHandicapRepository;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Flash;
+use Illuminate\Support\Facades\Gate;
+
 
 /**
  * Class TypeHandicapController
@@ -134,21 +136,19 @@ class TypeHandicapController extends AppBaseController
 
     public function destroy($id)
     {
+        $this->authorizeCnmh('delete','TypeHandicap');
         $typeHandicap = $this->typeHandicapRepository->find($id);
 
         if (empty($typeHandicap)) {
             Flash::error(__('models/typeHandicaps.singular').' '.__('messages.not_found'));
-
             return redirect(route('typeHandicaps.index'));
         }
 
-        $this->authorize('delete',$typeHandicap);
-
+       
         $this->typeHandicapRepository->delete($id);
-
         Flash::success(__('messages.deleted', ['model' => __('models/typeHandicaps.singular')]));
-
         return redirect(route('typeHandicaps.index'));
+       
     }
 
 

@@ -31,5 +31,5 @@ class TypeHandicap extends Model
         'updated_at' => 'nullable'
     ];
 
-    
+
 }

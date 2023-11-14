@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Session;
+
+use Illuminate\Support\Facades\Auth;
 
 if (!function_exists('is_male_localisation')) {
     function is_male_localisation($key)
@@ -18,12 +19,15 @@ if (!function_exists('is_male_localisation')) {
 if (!function_exists('app_menu')) {
     function app_menu()
     {
-        if (Session::get('user') != "admin") {
-            return App\Models\MenuItem::where("description", Session::get("user"))->orWhere("description", null)->get()->groupBy('menu_group.nom');
-        }
-        else{
-            return App\Models\MenuItem::where("description", Session::get("user"))->get()->groupBy('menu_group.nom');
-
+        if (Auth::check() && Auth::user()->name !== "admin") {
+            return App\Models\MenuItem::where("description", Auth::user()->name)
+                ->orWhere("description", null)
+                ->get()
+                ->groupBy('menu_group.nom');
+        } else {
+            return App\Models\MenuItem::where("description", Auth::user()->name)
+                ->get()
+                ->groupBy('menu_group.nom');
         }
     }
 }

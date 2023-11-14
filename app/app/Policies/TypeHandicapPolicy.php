@@ -45,7 +45,7 @@ class TypeHandicapPolicy
      */
     public function delete(User $user, TypeHandicap $typeHandicap): bool
     {
-        return $user->name === 'admin';
+       return $user->name === 'admin';
     }
 
     /**
