@@ -16,7 +16,7 @@ use InfyOm\Generator\Utils\ResponseUtil;
  */
 class AppBaseController extends Controller
 {
-
+    
     public function authorizeCnmh($action, $modelName)
     {
         $modelPath = 'App\\Models\\'.$modelName;    

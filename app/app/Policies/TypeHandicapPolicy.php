@@ -29,7 +29,7 @@ class TypeHandicapPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->name === 'admin';
     }
 
     /**
@@ -37,7 +37,15 @@ class TypeHandicapPolicy
      */
     public function update(User $user, TypeHandicap $typeHandicap): bool
     {
-        //
+        return $user->name === 'admin';
+    }
+
+    /**
+     * Determine whether the user can edit the model.
+     */
+    public function edit(User $user, TypeHandicap $typeHandicap): bool
+    {
+        return $user->name === 'admin';
     }
 
     /**

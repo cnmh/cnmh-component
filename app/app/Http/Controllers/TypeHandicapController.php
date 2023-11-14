@@ -60,6 +60,8 @@ class TypeHandicapController extends AppBaseController
 
     public function create()
     {
+        $this->authorizeCnmh('create','TypeHandicap');
+
         return view('type_handicaps.create');
     }
 
@@ -72,6 +74,8 @@ class TypeHandicapController extends AppBaseController
 
     public function store(CreateTypeHandicapRequest $request)
     {
+        $this->authorizeCnmh('create','TypeHandicap');
+
         $input = $request->all();
 
         $typeHandicap = $this->typeHandicapRepository->create($input);
@@ -90,6 +94,8 @@ class TypeHandicapController extends AppBaseController
 
     public function edit($id)
     {
+        $this->authorizeCnmh('edit','TypeHandicap');
+
         $typeHandicap = $this->typeHandicapRepository->find($id);
 
         if (empty($typeHandicap)) {
@@ -111,6 +117,8 @@ class TypeHandicapController extends AppBaseController
 
     public function update($id, UpdateTypeHandicapRequest $request)
     {
+        $this->authorizeCnmh('update','TypeHandicap');
+
         $typeHandicap = $this->typeHandicapRepository->find($id);
 
         if (empty($typeHandicap)) {
@@ -137,6 +145,7 @@ class TypeHandicapController extends AppBaseController
     public function destroy($id)
     {
         $this->authorizeCnmh('delete','TypeHandicap');
+        
         $typeHandicap = $this->typeHandicapRepository->find($id);
 
         if (empty($typeHandicap)) {
