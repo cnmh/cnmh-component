@@ -22,6 +22,9 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\TypeHandicap' => 'App\Policies\TypeHandicapPolicy',
         'App\Models\Service' => 'App\Policies\ServicePolicy',
         'App\Models\CouvertureMedical' => 'App\Policies\CouvertureMedicalPolicy',
+        'App\Models\Employe' => 'App\Policies\EmployePolicy',
+
+        
 
         
 

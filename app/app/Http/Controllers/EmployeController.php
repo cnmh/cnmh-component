@@ -45,6 +45,7 @@ class EmployeController extends AppBaseController
          */
         public function create()
         {
+            $this->authorizeCnmh('create','Employe');
 
             $fonction = Fonction::all();
             return view('employes.create',compact("fonction"));
@@ -55,6 +56,9 @@ class EmployeController extends AppBaseController
      */
     public function store(CreateEmployeRequest $request)
     {
+
+        $this->authorizeCnmh('create','Employe');
+
         $input = $request->all();
 
         $employe = $this->employeRepository->create($input);
@@ -88,6 +92,9 @@ class EmployeController extends AppBaseController
      */
     public function edit($id)
     {
+
+        $this->authorizeCnmh('edit','Employe');
+
         $employe = $this->employeRepository->find($id);
         $fonction = $employe->fonction;
         if (empty($employe)) {
@@ -106,6 +113,9 @@ class EmployeController extends AppBaseController
      */
     public function update($id, UpdateEmployeRequest $request)
     {
+
+        $this->authorizeCnmh('update','Employe');
+
         $employe = $this->employeRepository->find($id);
 
         if (empty($employe)) {
@@ -128,6 +138,9 @@ class EmployeController extends AppBaseController
      */
     public function destroy($id)
     {
+
+        $this->authorizeCnmh('delete','Employe');
+
         $employe = $this->employeRepository->find($id);
 
         if (empty($employe)) {
@@ -146,6 +159,9 @@ class EmployeController extends AppBaseController
         return Excel::download(new ExportEmployes , 'Employe.xlsx');
     }
     public function import(Request $request){
+        
+        $this->authorizeCnmh('create','Employe');
+
         Excel::import(new ImportEmployes, $request->file('file')->store('files'));
         return redirect()->back();
     }
