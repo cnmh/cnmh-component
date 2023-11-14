@@ -55,12 +55,7 @@
                         </div>
                     </form>
 
-                    <p class="mb-1">
-                        <a href="{{ route('password.request') }}">J'ai oublié mon mot de passe</a>
-                    </p>
-                    <p class="mb-0">
-                        <a href="{{ route('register') }}" class="text-center">Inscription</a>
-                    </p>
+                    
                 </div>
                 <!-- /.login-card-body -->
             </div>
