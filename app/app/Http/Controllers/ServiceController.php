@@ -54,6 +54,7 @@ class ServiceController extends AppBaseController
 
     public function create()
     {
+        $this->authorizeCnmh('create','Service');
         return view('services.create');
     }
 
@@ -66,6 +67,8 @@ class ServiceController extends AppBaseController
     
     public function store(CreateServiceRequest $request)
     {
+        $this->authorizeCnmh('create','Service');
+
         $input = $request->all();
 
         $service = $this->serviceRepository->create($input);
@@ -104,6 +107,8 @@ class ServiceController extends AppBaseController
 
     public function edit($id)
     {
+        $this->authorizeCnmh('edit','Service');
+
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
@@ -125,6 +130,8 @@ class ServiceController extends AppBaseController
 
     public function update($id, UpdateServiceRequest $request)
     {
+        $this->authorizeCnmh('update','Service');
+
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
@@ -147,6 +154,8 @@ class ServiceController extends AppBaseController
      */
     public function destroy($id)
     {
+        $this->authorizeCnmh('delete','Service');
+
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
@@ -180,6 +189,9 @@ class ServiceController extends AppBaseController
     */
 
     public function import(Request $request){
+        
+        $this->authorizeCnmh('create','Service');
+
         Excel::import(new ServiceImport, $request->file('file')->store('files'));
         return redirect()->back();
     }
