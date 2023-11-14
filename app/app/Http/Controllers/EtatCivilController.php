@@ -49,6 +49,8 @@ class EtatCivilController extends AppBaseController
      */
     public function create()
     {
+        $this->authorizeCnmh('create','EtatCivil');
+
         return view('etat_civils.create');
     }
 
@@ -57,6 +59,8 @@ class EtatCivilController extends AppBaseController
      */
     public function store(CreateEtatCivilRequest $request)
     {
+        $this->authorizeCnmh('create','EtatCivil');
+
         $input = $request->all();
 
         $etatCivil = $this->etatCivilRepository->create($input);
@@ -87,6 +91,8 @@ class EtatCivilController extends AppBaseController
      */
     public function edit($id)
     {
+        $this->authorizeCnmh('edit','EtatCivil');
+
         $etatCivil = $this->etatCivilRepository->find($id);
 
         if (empty($etatCivil)) {
@@ -103,6 +109,8 @@ class EtatCivilController extends AppBaseController
      */
     public function update($id, UpdateEtatCivilRequest $request)
     {
+        $this->authorizeCnmh('update','EtatCivil');
+
         $etatCivil = $this->etatCivilRepository->find($id);
 
         if (empty($etatCivil)) {
@@ -125,6 +133,8 @@ class EtatCivilController extends AppBaseController
      */
     public function destroy($id)
     {
+        $this->authorizeCnmh('delete','EtatCivil');
+
         $etatCivil = $this->etatCivilRepository->find($id);
 
         if (empty($etatCivil)) {
@@ -144,6 +154,9 @@ class EtatCivilController extends AppBaseController
         return Excel::download(new ExportEtatCivil, 'SituationFamiliere.xlsx');
     }
     public function import(Request $request){
+        
+        $this->authorizeCnmh('create','EtatCivil');
+
         Excel::import(new ImportEtatCivil, $request->file('file')->store('files'));
         return redirect()->back();
 
