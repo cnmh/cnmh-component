@@ -48,11 +48,11 @@
             <a href="{{ route('services.export') }}" class="btn btn-default swalDefaultQuestion">
                 <i class="fas fa-download"></i> @lang('crud.export')
             </a>
-
+            @can('create',App\Models\Service::class)
             <button class="btn btn-default swalDefaultQuestion" data-toggle="modal" data-target="#importModel">
                 <i class="fas fa-file-import"></i> @lang('crud.import')
             </button>
-
+            @endcan
         </div>
     </div>
 </div>
