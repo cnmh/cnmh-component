@@ -24,61 +24,16 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
+    
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+   
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
-    {
-
-    $user = User::where([['name', $request->name],
-    ['password', $request->password]
-    ])->first();
-    if($user){
-    if (!is_null($user->name)) {
-
-        // Authentication passed
-
-        session(['user' => $user->name]);
-
-        return redirect('/');
-    } else {
-        // Authentication failed
-        return redirect()->back()->withErrors(['error' => 'Invalid name or password']);
-    }
-}else {
-    // Authentication failed
-    return redirect()->back()->withErrors(['error' => 'Invalid name or password']);
-}
+   
 }
 
-function logout(){
-    Session::forget('user');
-    return redirect('/');
-}
-
-
-}
-// $user = User::where([
-//      ['name', $request->name],
-//   ['password', $request->password]
-// ])->get();
-
-// if($user[0] != null){
-//     return redirect('/');
-// }else{
-//     return redirect("login");
 
