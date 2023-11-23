@@ -14,3 +14,4 @@ Route::resource('orientation-externes', App\Http\Controllers\OrientationExterneC
 Route::resource('consultations', App\Http\Controllers\ConsultationController::class);
 Route::resource('rendez-vouses', App\Http\Controllers\RendezVousController::class);
 Route::resource('roles', App\Http\Controllers\RoleController::class);
+Route::resource('permissions', App\Http\Controllers\PermissionController::class);
