@@ -20,4 +20,5 @@ php artisan infyom:scaffold Tuteur --fromTable --table=tuteurs // Not used.
 
 php artisan infyom:scaffold MenuGroup --fromTable --table=menu_groups
 php artisan infyom:scaffold MenuItem --fromTable --table=menu_items
+php artisan infyom:scaffold Role --fromTable --table=roles
 ````

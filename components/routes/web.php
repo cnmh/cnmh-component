@@ -13,3 +13,4 @@ Route::resource('dossier-patients', App\Http\Controllers\DossierPatientControlle
 Route::resource('orientation-externes', App\Http\Controllers\OrientationExterneController::class);
 Route::resource('consultations', App\Http\Controllers\ConsultationController::class);
 Route::resource('rendez-vouses', App\Http\Controllers\RendezVousController::class);
+Route::resource('roles', App\Http\Controllers\RoleController::class);
