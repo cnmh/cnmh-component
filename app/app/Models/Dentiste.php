@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Sprint 3
+ */
 class Dentiste extends Consultation
 {
     // protected $table = 'consultations';

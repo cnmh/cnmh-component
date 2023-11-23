@@ -19,7 +19,7 @@ class TypeHandicap extends Model
     ];
 
     public static array $rules = [
-        'nom' => 'required|string|max:255',
+        'nom' => 'required|string|max:191',
         'description' => 'nullable|string|max:65535',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'

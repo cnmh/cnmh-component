@@ -96,3 +96,17 @@
         <p>@lang('models/rendezVouses.plural')</p>
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="{{ route('typeHandicaps.index') }}" class="nav-link {{ Request::is('typeHandicaps*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>@lang('models/typeHandicaps.plural')</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="{{ route('roles.index') }}" class="nav-link {{ Request::is('roles*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>@lang('models/roles.plural')</p>
+    </a>
+</li>

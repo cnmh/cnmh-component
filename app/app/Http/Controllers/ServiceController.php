@@ -26,7 +26,11 @@ class ServiceController extends AppBaseController
 
     /**
      * Display a listing of the Service.
-     */
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+    */
+
     public function index(Request $request)
     {
 
@@ -44,17 +48,27 @@ class ServiceController extends AppBaseController
 
     /**
      * Show the form for creating a new Service.
-     */
+     *
+     * @return \Illuminate\View\View
+    */
+
     public function create()
     {
+        $this->authorizeCnmh('create','Service');
         return view('services.create');
     }
 
     /**
      * Store a newly created Service in storage.
-     */
+     *
+     * @param  \App\Http\Requests\CreateServiceRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+    */
+    
     public function store(CreateServiceRequest $request)
     {
+        $this->authorizeCnmh('create','Service');
+
         $input = $request->all();
 
         $service = $this->serviceRepository->create($input);
@@ -66,7 +80,11 @@ class ServiceController extends AppBaseController
 
     /**
      * Display the specified Service.
-     */
+     *
+     * @param  int  $id
+     * @return \Illuminate\View\View
+    */
+
     public function show($id)
     {
         $service = $this->serviceRepository->find($id);
@@ -82,9 +100,15 @@ class ServiceController extends AppBaseController
 
     /**
      * Show the form for editing the specified Service.
-     */
+     *
+     * @param  int  $id
+     * @return \Illuminate\View\View
+    */
+
     public function edit($id)
     {
+        $this->authorizeCnmh('edit','Service');
+
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
@@ -98,9 +122,16 @@ class ServiceController extends AppBaseController
 
     /**
      * Update the specified Service in storage.
-     */
+     *
+     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateServiceRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+    */
+
     public function update($id, UpdateServiceRequest $request)
     {
+        $this->authorizeCnmh('update','Service');
+
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
@@ -123,6 +154,8 @@ class ServiceController extends AppBaseController
      */
     public function destroy($id)
     {
+        $this->authorizeCnmh('delete','Service');
+
         $service = $this->serviceRepository->find($id);
 
         if (empty($service)) {
@@ -137,10 +170,28 @@ class ServiceController extends AppBaseController
 
         return redirect(route('services.index'));
     }
+
+    /**
+     * Export services to an Excel file.
+     *
+     * @return \Illuminate\Http\DownloadResponse
+    */
+
     public function export(){
         return Excel::download(new ServiceExport, 'prestation.xlsx');
     }
+
+    /**
+     * Import services from an Excel file.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+    */
+
     public function import(Request $request){
+
+        $this->authorizeCnmh('create','Service');
+
         Excel::import(new ServiceImport, $request->file('file')->store('files'));
         return redirect()->back();
     }

@@ -1,7 +1,7 @@
 <!-- Nom Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nom', __('models/typeHandicaps.fields.nom').':') !!}
-    {!! Form::text('nom', null, ['class' => 'form-control', 'required', 'maxlength' => 255, 'maxlength' => 255]) !!}
+    {!! Form::text('nom', null, ['class' => 'form-control', 'required', 'maxlength' => 191, 'maxlength' => 191]) !!}
 </div>
 
 <!-- Description Field -->

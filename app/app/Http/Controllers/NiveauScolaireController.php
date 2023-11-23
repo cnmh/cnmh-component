@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 use Flash;
 use Maatwebsite\Excel\Facades\Excel;
 
+/**
+ * @author CodeCampers, Boukhar Soufiane
+ */
+
 class NiveauScolaireController extends AppBaseController
 {
     /** @var NiveauScolaireRepository $niveauScolaireRepository*/
@@ -47,6 +51,8 @@ class NiveauScolaireController extends AppBaseController
      */
     public function create()
     {
+        $this->authorizeCnmh('create','NiveauScolaire');
+
         return view('niveau_scolaires.create');
     }
 
@@ -55,6 +61,8 @@ class NiveauScolaireController extends AppBaseController
      */
     public function store(CreateNiveauScolaireRequest $request)
     {
+        $this->authorizeCnmh('create','NiveauScolaire');
+
         $input = $request->all();
 
         $niveauScolaire = $this->niveauScolaireRepository->create($input);
@@ -85,6 +93,8 @@ class NiveauScolaireController extends AppBaseController
      */
     public function edit($id)
     {
+        $this->authorizeCnmh('edit','NiveauScolaire');
+
         $niveauScolaire = $this->niveauScolaireRepository->find($id);
 
         if (empty($niveauScolaire)) {
@@ -101,6 +111,8 @@ class NiveauScolaireController extends AppBaseController
      */
     public function update($id, UpdateNiveauScolaireRequest $request)
     {
+        $this->authorizeCnmh('update','NiveauScolaire');
+
         $niveauScolaire = $this->niveauScolaireRepository->find($id);
 
         if (empty($niveauScolaire)) {
@@ -123,6 +135,8 @@ class NiveauScolaireController extends AppBaseController
      */
     public function destroy($id)
     {
+        $this->authorizeCnmh('delete','NiveauScolaire');
+
         $niveauScolaire = $this->niveauScolaireRepository->find($id);
 
         if (empty($niveauScolaire)) {
@@ -141,6 +155,9 @@ class NiveauScolaireController extends AppBaseController
         return Excel::download(new NiveauScolaireExport, 'NiveauScolaires.xlsx');
     }
     public function import(Request $request){
+
+        $this->authorizeCnmh('create','NiveauScolaire');
+
         Excel::import(new NiveauScolaireImport , $request->file('file')->store('files'));
         return redirect()->back();
     }

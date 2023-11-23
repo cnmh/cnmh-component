@@ -18,9 +18,12 @@ abstract class BaseRepository
 
     protected $paginationLimit = 10;
     protected $connect_user;
+
     /**
      * @throws \Exception
-     */
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function __construct()
     {
         $this->makeModel();
@@ -30,21 +33,26 @@ abstract class BaseRepository
 
     /**
      * Get searchable fields array
-     */
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     abstract public function getFieldsSearchable(): array;
 
     /**
      * Configure the Model
-     */
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     abstract public function model(): string;
 
     /**
      * Make Model instance
      *
      * @throws \Exception
-     *
      * @return Model
-     */
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function makeModel()
     {
         $model = app($this->model());
@@ -58,7 +66,9 @@ abstract class BaseRepository
 
     /**
      * Paginate records for scaffold.
-     */
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function paginate($search = [], $perPage = null, array $columns = ['*']): LengthAwarePaginator
     {
         $query = $this->allQuery($search);
@@ -71,7 +81,8 @@ abstract class BaseRepository
 
     /**
      * Build a query for retrieving all records.
-     */
+     * @author CodeCampers/boukhar Soufiane
+    */
     public function allQuery($search = [], int $skip = null, int $limit = null): Builder
     {
         $query = $this->model->newQuery();
@@ -107,7 +118,9 @@ abstract class BaseRepository
 
     /**
      * Retrieve all records with given filter criteria
-     */
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function all(array $search = [], int $skip = null, int $limit = null, array $columns = ['*']): Collection
     {
         $query = $this->allQuery($search, $skip, $limit);
@@ -117,7 +130,9 @@ abstract class BaseRepository
 
     /**
      * Create model record
-     */
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function create(array $input): Model
     {
         $input['user_id'] = $this->connect_user->id;
@@ -132,7 +147,9 @@ abstract class BaseRepository
      * Find model record for given id
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|Model|null
-     */
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function find(int $id, array $columns = ['*'])
     {
         $query = $this->model->newQuery();
@@ -142,9 +159,10 @@ abstract class BaseRepository
 
     /**
      * Update model record for given id
-     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|Model
-     */
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function update(array $input, int $id)
     {
         $query = $this->model->newQuery();
@@ -160,9 +178,10 @@ abstract class BaseRepository
 
     /**
      * @throws \Exception
-     *
      * @return bool|mixed|null
-     */
+     * @author CodeCampers/boukhar Soufiane
+    */
+
     public function delete(int $id)
     {
         $query = $this->model->newQuery();

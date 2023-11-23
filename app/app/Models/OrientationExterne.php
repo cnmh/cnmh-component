@@ -4,6 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
  use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+/** 
+ * Sprint 3
+*/
+
+
 class OrientationExterne extends Model
 {
     use HasFactory;    public $table = 'orientation_externes';
