@@ -19,8 +19,8 @@ class Project extends Model
     ];
 
     public static array $rules = [
-        'name' => 'required|string|max:255',
-        'description' => 'required|string|max:255',
+        'name' => 'required|string|max:191',
+        'description' => 'required|string|max:191',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
     ];

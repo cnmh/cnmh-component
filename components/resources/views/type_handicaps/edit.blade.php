@@ -28,7 +28,9 @@
             </div>
 
             <div class="card-footer">
+                @can('update-TypeHandicap')
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                @endcan
                 <a href="{{ route('typeHandicaps.index') }}" class="btn btn-default"> @lang('crud.cancel') </a>
             </div>
 

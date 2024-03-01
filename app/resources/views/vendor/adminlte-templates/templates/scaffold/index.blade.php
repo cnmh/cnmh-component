@@ -12,7 +12,7 @@
                     <h1>{{ $config->modelNames->humanPlural }}</h1>
 @endif
                 </div>
-                @can('create-'.$config->modelNames->name)
+                @@can('create-{{$config->modelNames->name}}')
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.create') }}">
@@ -23,7 +23,7 @@
 @endif
                     </a>
                 </div>
-                @endcan
+               @@endcan
             </div>
         </div>
     </section>

@@ -18,14 +18,18 @@
                     <td  style="width: 120px">
                         @{!! Form::open(['route' => ['{{ $config->prefixes->getRoutePrefixWith('.') }}{{ $config->modelNames->camelPlural }}.destroy', ${{ $config->modelNames->camel }}->{{ $config->primaryName }}], 'method' => 'delete']) !!}
                         <div class='btn-group'>
+                            @@can('show-{{$config->modelNames->name}}')
                             <a href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.show', [${!! $config->modelNames->camel !!}->{!! $config->primaryName !!}]) }}"
                                class='btn btn-default btn-sm'>
                                 <i class="far fa-eye"></i>
                             </a>
+                            @@endcan
+                            @@can('edit-{{$config->modelNames->name}}')
                             <a href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.edit', [${!! $config->modelNames->camel !!}->{!! $config->primaryName !!}]) }}"
                                class='btn btn-default btn-sm'>
                                 <i class="far fa-edit"></i>
                             </a>
+                            @@endcan
                             @{!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                         </div>
                         @{!! Form::close() !!}
@@ -41,12 +45,16 @@
             {!! $paginate !!}
         </div>
         <div class="float-left">
+                                @can('export-'.$config->modelNames->name)
                                 <button type="button" class="btn btn-default swalDefaultQuestion">
                                     <i class="fas fa-download"></i> Exporter
                                 </button>
+                                @endcan
+                                @can('import-'.$config->modelNames->name)
                                 <button type="button" class="btn btn-default swalDefaultQuestion">
                                     <i class="fas fa-file-import"></i> Importer
                                 </button>
+                                @endcan
         </div>
     </div>
 </div>

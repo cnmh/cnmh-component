@@ -8,12 +8,14 @@
                 <div class="col-sm-6">
                     <h1>@lang('models/projects.plural')</h1>
                 </div>
+                @can('create-Project')
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="{{ route('projects.create') }}">
                          @lang('crud.add_new') Project
                     </a>
                 </div>
+               @endcan
             </div>
         </div>
     </section>

@@ -16,14 +16,18 @@
                     <td  style="width: 120px">
                         {!! Form::open(['route' => ['typeHandicaps.destroy', $typeHandicap->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
+                            @can('show-TypeHandicap')
                             <a href="{{ route('typeHandicaps.show', [$typeHandicap->id]) }}"
                                class='btn btn-default btn-sm'>
                                 <i class="far fa-eye"></i>
                             </a>
+                            @endcan
+                            @can('edit-TypeHandicap')
                             <a href="{{ route('typeHandicaps.edit', [$typeHandicap->id]) }}"
                                class='btn btn-default btn-sm'>
                                 <i class="far fa-edit"></i>
                             </a>
+                            @endcan
                             {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                         </div>
                         {!! Form::close() !!}
@@ -39,12 +43,6 @@
             @include('adminlte-templates::common.paginate', ['records' => $typeHandicaps])
         </div>
         <div class="float-left">
-                                <button type="button" class="btn btn-default swalDefaultQuestion">
-                                    <i class="fas fa-download"></i> Exporter
-                                </button>
-                                <button type="button" class="btn btn-default swalDefaultQuestion">
-                                    <i class="fas fa-file-import"></i> Importer
-                                </button>
-        </div>
+                                                                        </div>
     </div>
 </div>

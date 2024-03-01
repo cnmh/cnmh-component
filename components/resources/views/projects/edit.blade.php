@@ -28,7 +28,9 @@
             </div>
 
             <div class="card-footer">
+                @can('update-Project')
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                @endcan
                 <a href="{{ route('projects.index') }}" class="btn btn-default"> @lang('crud.cancel') </a>
             </div>
 

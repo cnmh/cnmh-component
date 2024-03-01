@@ -8,12 +8,14 @@
                 <div class="col-sm-6">
                     <h1>@lang('models/typeHandicaps.plural')</h1>
                 </div>
+                @can('create-TypeHandicap')
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="{{ route('typeHandicaps.create') }}">
                          @lang('crud.add_new') Type Handicap
                     </a>
                 </div>
+               @endcan
             </div>
         </div>
     </section>
