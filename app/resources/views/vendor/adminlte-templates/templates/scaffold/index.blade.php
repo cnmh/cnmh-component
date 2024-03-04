@@ -14,7 +14,7 @@
                 </div>
                 @@can('create-{{$config->modelNames->name}}')
                 <div class="col-sm-6">
-                    <a class="btn btn-primary float-right"
+                    <a class="btn btn-info float-right"
                        href="@{{ route('{!! $config->prefixes->getRoutePrefixWith('.') !!}{!! $config->modelNames->camelPlural !!}.create') }}">
 @if($config->options->localized)
                          @@lang('crud.add_new') {{ $config->modelNames->human }}

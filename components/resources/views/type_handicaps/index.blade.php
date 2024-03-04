@@ -10,7 +10,7 @@
                 </div>
                 @can('create-TypeHandicap')
                 <div class="col-sm-6">
-                    <a class="btn btn-primary float-right"
+                    <a class="btn btn-info float-right"
                        href="{{ route('typeHandicaps.create') }}">
                          @lang('crud.add_new') Type Handicap
                     </a>
